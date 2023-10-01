@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018904515960",
+    "project_id": "agendamento-8a10c",
+    "storage_bucket": "agendamento-8a10c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018904515960:android:09c11780194996beb1e48d",
+        "android_client_info": {
+          "package_name": "com.example.agenda_nail_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbYroM6BGIUwBXsye6Q_J8SB17EVo3Kgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
