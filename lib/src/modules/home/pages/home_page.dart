@@ -29,7 +29,9 @@ class _HomePageState extends State<HomePage> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 8, bottom: 8),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Modular.to.navigate('/auth/');
+                        },
                         child: const Text('ENTRAR'),
                       ),
                     ),
