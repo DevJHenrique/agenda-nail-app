@@ -9,7 +9,6 @@ class AppModule extends Module {
   void binds(i) {}
 
   @override
-  // TODO: implement imports
   List<Module> get imports => [
         AuthModule(),
       ];
