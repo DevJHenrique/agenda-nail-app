@@ -14,7 +14,7 @@ class FirebaseAuthService implements AuthService {
   Future<TokenEntity?> checkAuth() async {
     TokenEntity token;
 
-    if (auth.currentUser == null) {
+    if (auth.currentUser != null) {
       var idToken = await auth.currentUser!.getIdToken();
       var userId = auth.currentUser!.uid;
       var refreshToken = auth.currentUser!.refreshToken;

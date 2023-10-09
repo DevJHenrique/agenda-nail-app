@@ -70,6 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await controller.getToken(dto);
+                          Modular.to.navigate('/home/');
                         } else {}
                       },
                       child: controller.isLoading

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage(this.controller, {super.key});
+  final HomeController controller;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -11,8 +12,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    widget.controller.checkAuth();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var controller = context.watch<HomeController>();
+    var state = context.watch<HomeController>();
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: Center(
@@ -30,9 +37,13 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.only(top: 8, bottom: 8),
                       child: TextButton(
                         onPressed: () {
-                          Modular.to.navigate('/auth/');
+                          state.isAuthenticated
+                              ? state.logout()
+                              : Modular.to.navigate('/auth/');
                         },
-                        child: const Text('ENTRAR'),
+                        child: state.isAuthenticated
+                            ? const Text('SAIR')
+                            : const Text('ENTRAR'),
                       ),
                     ),
                   ),
@@ -58,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                             'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                         title: 'ESMALTAÇÃO',
                         value: 'R\$ 120,00',
-                        controller: controller,
+                        controller: state,
                         index: 1,
                       ),
                       selectableCards(
@@ -68,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                             'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                         title: 'ESMALTAÇÃO EM GEL',
                         value: 'R\$ 120,00',
-                        controller: controller,
+                        controller: state,
                         index: 2,
                       ),
                       selectableCards(
@@ -78,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                             'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                         title: 'ALONGAMENTO EM FIBRA',
                         value: 'R\$ 120,00',
-                        controller: controller,
+                        controller: state,
                         index: 3,
                       ),
                       selectableCards(
@@ -88,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                             'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                         title: 'SPA DO PÉ',
                         value: 'R\$ 120,00',
-                        controller: controller,
+                        controller: state,
                         index: 4,
                       ),
                       const SizedBox(height: 16),
@@ -105,8 +116,9 @@ class _HomePageState extends State<HomePage> {
         extendedPadding: const EdgeInsets.only(left: 64, right: 64),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         onPressed: () {
-          if (controller.selectedIndex != null) {
-            Modular.to.pushNamed('./agendamento');
+          if (state.selectedIndex != null) {
+            print(state.isAuthenticated);
+            //Modular.to.pushNamed('./agendamento');
           } else {
             _showToast(context);
           }
