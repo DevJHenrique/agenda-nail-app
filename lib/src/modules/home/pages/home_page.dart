@@ -1,6 +1,7 @@
-import 'package:agenda_nail_app/src/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
+import '../controllers/home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage(this.controller, {super.key});
@@ -22,90 +23,92 @@ class _HomePageState extends State<HomePage> {
     var state = context.watch<HomeController>();
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 0, left: 32, right: 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8, bottom: 8),
-                      child: TextButton(
-                        onPressed: () {
-                          state.isAuthenticated
-                              ? state.logout()
-                              : Modular.to.navigate('/auth/');
-                        },
-                        child: state.isAuthenticated
-                            ? const Text('SAIR')
-                            : const Text('ENTRAR'),
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 0, left: 32, right: 32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 8, bottom: 8),
+                        child: TextButton(
+                          onPressed: () {
+                            state.isAuthenticated
+                                ? state.logout()
+                                : Modular.to.navigate('/auth/');
+                          },
+                          child: state.isAuthenticated
+                              ? const Text('SAIR')
+                              : const Text('ENTRAR'),
+                        ),
                       ),
                     ),
-                  ),
-                  headBanner(context),
-                  const SizedBox(
-                    height: 32,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'O que deseja agendar?',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleSmall
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 8),
-                      selectableCards(
-                        context: context,
-                        size: size,
-                        imageURL:
-                            'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
-                        title: 'ESMALTAÇÃO',
-                        value: 'R\$ 120,00',
-                        controller: state,
-                        index: 1,
-                      ),
-                      selectableCards(
-                        context: context,
-                        size: size,
-                        imageURL:
-                            'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
-                        title: 'ESMALTAÇÃO EM GEL',
-                        value: 'R\$ 120,00',
-                        controller: state,
-                        index: 2,
-                      ),
-                      selectableCards(
-                        context: context,
-                        size: size,
-                        imageURL:
-                            'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
-                        title: 'ALONGAMENTO EM FIBRA',
-                        value: 'R\$ 120,00',
-                        controller: state,
-                        index: 3,
-                      ),
-                      selectableCards(
-                        context: context,
-                        size: size,
-                        imageURL:
-                            'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
-                        title: 'SPA DO PÉ',
-                        value: 'R\$ 120,00',
-                        controller: state,
-                        index: 4,
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  )
-                ],
+                    headBanner(context),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'O que deseja agendar?',
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 8),
+                        selectableCards(
+                          context: context,
+                          size: size,
+                          imageURL:
+                              'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
+                          title: 'ESMALTAÇÃO',
+                          value: 'R\$ 120,00',
+                          controller: state,
+                          index: 1,
+                        ),
+                        selectableCards(
+                          context: context,
+                          size: size,
+                          imageURL:
+                              'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
+                          title: 'ESMALTAÇÃO EM GEL',
+                          value: 'R\$ 120,00',
+                          controller: state,
+                          index: 2,
+                        ),
+                        selectableCards(
+                          context: context,
+                          size: size,
+                          imageURL:
+                              'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
+                          title: 'ALONGAMENTO EM FIBRA',
+                          value: 'R\$ 120,00',
+                          controller: state,
+                          index: 3,
+                        ),
+                        selectableCards(
+                          context: context,
+                          size: size,
+                          imageURL:
+                              'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
+                          title: 'SPA DO PÉ',
+                          value: 'R\$ 120,00',
+                          controller: state,
+                          index: 4,
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

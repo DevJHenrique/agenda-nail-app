@@ -1,5 +1,5 @@
 import 'package:agenda_nail_app/src/modules/auth/dtos/user_credential_dto.dart';
-import 'package:agenda_nail_app/src/modules/auth/models/token_entity.dart';
+import 'package:agenda_nail_app/src/modules/core/models/token_entity.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 

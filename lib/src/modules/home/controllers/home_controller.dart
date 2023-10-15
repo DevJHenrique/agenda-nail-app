@@ -1,5 +1,5 @@
-import 'package:agenda_nail_app/src/modules/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:agenda_nail_app/src/modules/core/controllers/auth_controller.dart';
 
 class HomeController extends ChangeNotifier {
   final AuthController _authController;

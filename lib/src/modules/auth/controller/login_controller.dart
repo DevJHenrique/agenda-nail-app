@@ -1,4 +1,4 @@
-import 'package:agenda_nail_app/src/modules/auth/controller/auth_controller.dart';
+import 'package:agenda_nail_app/src/modules/core/controllers/auth_controller.dart';
 import 'package:agenda_nail_app/src/modules/auth/dtos/user_credential_dto.dart';
 import 'package:flutter/foundation.dart';
 import 'package:validatorless/validatorless.dart';

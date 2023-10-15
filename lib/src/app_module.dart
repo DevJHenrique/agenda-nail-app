@@ -1,8 +1,7 @@
 import 'package:agenda_nail_app/src/modules/auth/auth_module.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'package:agenda_nail_app/src/modules/core/core_module.dart';
+import 'package:agenda_nail_app/src/modules/home/home_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'modules/home/home_module.dart';
 
 class AppModule extends Module {
   @override
@@ -10,7 +9,7 @@ class AppModule extends Module {
 
   @override
   List<Module> get imports => [
-        AuthModule(),
+        CoreModule(),
       ];
 
   @override

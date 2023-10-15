@@ -7,6 +7,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Modular.setInitialRoute('/home/');
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Agenda Nails APP',

@@ -1,8 +1,9 @@
-import 'package:agenda_nail_app/src/modules/auth/auth_module.dart';
-import 'package:agenda_nail_app/src/modules/home/controllers/home_controller.dart';
-import 'package:agenda_nail_app/src/modules/home/pages/home_page.dart';
-import 'package:agenda_nail_app/src/modules/home/pages/scheduling_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:agenda_nail_app/src/modules/core/core_module.dart';
+
+import 'controllers/home_controller.dart';
+import 'pages/home_page.dart';
+import 'pages/scheduling_page.dart';
 
 class HomeModule extends Module {
   @override
@@ -11,7 +12,7 @@ class HomeModule extends Module {
   }
 
   @override
-  List<Module> get imports => [AuthModule()];
+  List<Module> get imports => [CoreModule()];
 
   @override
   void routes(RouteManager r) {
