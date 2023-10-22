@@ -109,10 +109,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await controller.createAccount(dto);
-                          print('valid');
-                        } else {
-                          print(dto.cellPhone);
-                        }
+                        } else {}
                       },
                       child: controller.isLoading
                           ? const SizedBox(

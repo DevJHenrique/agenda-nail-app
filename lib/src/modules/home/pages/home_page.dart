@@ -1,11 +1,12 @@
+import 'package:agenda_nail_app/src/modules/core/authentication/states/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage(this.controller, {super.key});
-  final HomeController controller;
+  const HomePage(this._homeController, {super.key});
+  final HomeController _homeController;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -14,13 +15,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    widget.controller.checkAuth();
+    widget._homeController.checkAuth();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    var state = context.watch<HomeController>();
+    var controller = context.watch<HomeController>();
     var size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: SafeArea(
@@ -39,11 +40,13 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(top: 8, bottom: 8),
                         child: TextButton(
                           onPressed: () {
-                            state.isAuthenticated
-                                ? state.logout()
-                                : Modular.to.navigate('/auth/');
+                            if (controller.state is Authenticated) {
+                              controller.logout();
+                            } else {
+                              Modular.to.pushNamed('/auth/');
+                            }
                           },
-                          child: state.isAuthenticated
+                          child: controller.state is Authenticated
                               ? const Text('SAIR')
                               : const Text('ENTRAR'),
                         ),
@@ -71,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                               'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                           title: 'ESMALTAÇÃO',
                           value: 'R\$ 120,00',
-                          controller: state,
+                          controller: controller,
                           index: 1,
                         ),
                         selectableCards(
@@ -81,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                               'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                           title: 'ESMALTAÇÃO EM GEL',
                           value: 'R\$ 120,00',
-                          controller: state,
+                          controller: controller,
                           index: 2,
                         ),
                         selectableCards(
@@ -91,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                               'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                           title: 'ALONGAMENTO EM FIBRA',
                           value: 'R\$ 120,00',
-                          controller: state,
+                          controller: controller,
                           index: 3,
                         ),
                         selectableCards(
@@ -101,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                               'https://st2.depositphotos.com/1033977/5979/i/950/depositphotos_59792387-stock-photo-blue-pink-manicure.jpg',
                           title: 'SPA DO PÉ',
                           value: 'R\$ 120,00',
-                          controller: state,
+                          controller: controller,
                           index: 4,
                         ),
                         const SizedBox(height: 16),
@@ -119,9 +122,9 @@ class _HomePageState extends State<HomePage> {
         extendedPadding: const EdgeInsets.only(left: 64, right: 64),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         onPressed: () {
-          if (state.selectedIndex != null) {
-            print(state.isAuthenticated);
-            //Modular.to.pushNamed('./agendamento');
+          setState(() {});
+          if (controller.selectedIndex != null) {
+            Modular.to.pushNamed('./agendamento');
           } else {
             _showToast(context);
           }
@@ -237,7 +240,7 @@ class _HomePageState extends State<HomePage> {
             Text('Agende agora mesmo o seu horario na',
                 style: Theme.of(context).textTheme.titleSmall),
             Text(
-              'KB Nail Designer',
+              'Nail Designer',
               style: Theme.of(context)
                   .textTheme
                   .titleLarge

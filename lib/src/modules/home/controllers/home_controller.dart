@@ -1,5 +1,6 @@
+import 'package:agenda_nail_app/src/modules/core/authentication/states/auth_state.dart';
 import 'package:flutter/material.dart';
-import 'package:agenda_nail_app/src/modules/core/controllers/auth_controller.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/controllers/auth_controller.dart';
 
 class HomeController extends ChangeNotifier {
   final AuthController _authController;
@@ -22,5 +23,5 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get isAuthenticated => _authController.isAuthenticated;
+  AuthState get state => _authController.state;
 }

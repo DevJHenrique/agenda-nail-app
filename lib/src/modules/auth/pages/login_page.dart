@@ -68,10 +68,13 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 16),
                     ElevatedButton(
                       onPressed: () async {
+                        bool isAuthenticated = false;
                         if (formKey.currentState!.validate()) {
-                          await controller.getToken(dto);
+                          isAuthenticated = await controller.getToken(dto);
+                        }
+                        if (isAuthenticated) {
                           Modular.to.navigate('/home/');
-                        } else {}
+                        }
                       },
                       child: controller.isLoading
                           ? const SizedBox(

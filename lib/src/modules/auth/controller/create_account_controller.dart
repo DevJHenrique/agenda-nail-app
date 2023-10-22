@@ -1,6 +1,7 @@
-import 'package:agenda_nail_app/src/modules/core/controllers/auth_controller.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/controllers/auth_controller.dart';
 import 'package:agenda_nail_app/src/modules/auth/dtos/user_credential_dto.dart';
-import 'package:agenda_nail_app/src/modules/core/models/token_entity.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/models/token_entity.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/states/auth_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -9,6 +10,8 @@ class CreateAccountController extends ChangeNotifier {
 
   CreateAccountController(this._authController);
 
+  AuthState get state => _authController.state;
+
   TokenEntity? token;
   bool isLoading = false;
 
@@ -16,7 +19,7 @@ class CreateAccountController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    token = await _authController.createAccount(user);
+    await _authController.createAccount(user);
 
     isLoading = false;
     notifyListeners();

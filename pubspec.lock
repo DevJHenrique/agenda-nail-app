@@ -312,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  mocktail:
+    dependency: "direct main"
+    description:
+      name: mocktail
+      sha256: bac151b31e4ed78bd59ab89aa4c0928f297b1180186d5daf03734519e5f596c1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   modular_core:
     dependency: transitive
     description:
@@ -401,7 +409,7 @@ packages:
     source: hosted
     version: "2.1.6"
   result_dart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: result_dart
       sha256: f28a171d55e2e1c1753b41d4d8edcaff886f103e73c575d14764913907e57928

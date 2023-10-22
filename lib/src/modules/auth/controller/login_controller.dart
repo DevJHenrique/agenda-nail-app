@@ -1,5 +1,6 @@
-import 'package:agenda_nail_app/src/modules/core/controllers/auth_controller.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/controllers/auth_controller.dart';
 import 'package:agenda_nail_app/src/modules/auth/dtos/user_credential_dto.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/states/auth_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -8,17 +9,24 @@ class LoginController extends ChangeNotifier {
 
   LoginController(this._authController);
 
+  AuthState get state => _authController.state;
+
   bool isLoading = false;
   String? messageErros;
 
-  Future<void> getToken(UserCredentialDTO user) async {
+  Future<bool> getToken(UserCredentialDTO user) async {
     isLoading = true;
     notifyListeners();
 
-    _authController.token = await _authController.loginWithEmail(user);
-
+    await _authController.loginWithEmail(user);
     isLoading = false;
     notifyListeners();
+
+    if (state is Authenticated) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   String? Function(String?)? emailValidator() {
