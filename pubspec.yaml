@@ -45,6 +45,7 @@ dependencies:
   flutter_modular: ^6.0.4+1
   result_dart: ^1.1.0
   mocktail: ^1.0.1
+  cloud_firestore: ^4.12.2
 
 dev_dependencies:
   flutter_test:

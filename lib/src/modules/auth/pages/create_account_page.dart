@@ -1,4 +1,5 @@
 import 'package:agenda_nail_app/src/modules/auth/controller/create_account_controller.dart';
+import 'package:agenda_nail_app/src/modules/core/authentication/states/auth_state.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -109,7 +110,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           await controller.createAccount(dto);
-                        } else {}
+                        }
+                        if (controller.state is Authenticated) {
+                          Modular.to.navigate('/home');
+                        }
                       },
                       child: controller.isLoading
                           ? const SizedBox(

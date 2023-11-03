@@ -8,6 +8,7 @@ class FirebaseAuthRepository implements AuthRepository {
   final AuthService service;
 
   FirebaseAuthRepository(this.service);
+
   @override
   Future<AuthState> createUserWithEmail(UserCredentialDTO user) async {
     var result = await service.createAccountWithEmail(user);
