@@ -1,3 +1,5 @@
+import 'package:agenda_nail_app/src/modules/core/database/services/firestore_database_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -12,7 +14,9 @@ class CoreModule extends Module {
   void exportedBinds(Injector i) {
     i.addSingleton(AuthController.new);
     i.addInstance(FirebaseAuth.instance);
+    i.addInstance(FirebaseFirestore.instance);
     i.add<AuthRepository>(FirebaseAuthRepository.new);
     i.add<AuthService>(FirebaseAuthService.new);
+    i.add<FirestoreDatabaseService>(FirestoreDatabaseService.new);
   }
 }
