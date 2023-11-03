@@ -1,13 +1,14 @@
 import 'package:agenda_nail_app/src/modules/core/database/models/user_model.dart';
+import 'package:agenda_nail_app/src/modules/core/database/services/database_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FirestoreDatabaseService {
+class FirestoreDatabaseService implements DatabaseService {
   final FirebaseFirestore db;
 
   FirestoreDatabaseService(this.db);
 
-  Future<void> add(UserModel user) async {
-    print(user);
+  @override
+  Future<void> setUser(UserModel user) async {
     final docRef = db
         .collection("users")
         .withConverter(
@@ -15,7 +16,13 @@ class FirestoreDatabaseService {
           toFirestore: (UserModel user, options) => user.toFirestore(),
         )
         .doc(user.id);
-    print(docRef.path);
+
     await docRef.set(user);
+  }
+
+  @override
+  Future<void> deleteUser(UserModel user) {
+    // TODO: implement deleteUser
+    throw UnimplementedError();
   }
 }

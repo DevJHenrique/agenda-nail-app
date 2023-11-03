@@ -1,11 +1,8 @@
 import 'package:agenda_nail_app/src/modules/auth/dtos/user_credential_dto.dart';
 import 'package:agenda_nail_app/src/modules/core/authentication/exceptions/auth_exception.dart';
 import 'package:agenda_nail_app/src/modules/core/authentication/models/token_entity.dart';
-import 'package:agenda_nail_app/src/modules/core/database/models/user_model.dart';
-import 'package:agenda_nail_app/src/modules/core/database/services/firestore_database_service.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:result_dart/result_dart.dart';
 
 import 'auth_service.dart';
@@ -14,8 +11,6 @@ class FirebaseAuthService implements AuthService {
   final FirebaseAuth auth;
 
   FirebaseAuthService(this.auth);
-
-  final database = Modular.get<FirestoreDatabaseService>();
 
   @override
   Future<TokenEntity?> checkAuth() async {
@@ -50,15 +45,6 @@ class FirebaseAuthService implements AuthService {
       await credential.user!.updateDisplayName(user.userName);
 
       var token = await getToken(credential);
-
-      var newUser = UserModel(
-        id: credential.user!.uid,
-        name: user.userName!,
-        email: user.email!,
-        phone: user.cellPhone!,
-      );
-
-      await database.add(newUser);
 
       return Success(token);
     } on FirebaseAuthException catch (e) {

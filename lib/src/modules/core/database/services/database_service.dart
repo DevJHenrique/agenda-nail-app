@@ -1,5 +1,6 @@
 import '../models/user_model.dart';
 
 abstract class DatabaseService {
-  Future<void> add(UserModel user);
+  Future<void> setUser(UserModel user);
+  Future<void> deleteUser(UserModel user);
 }

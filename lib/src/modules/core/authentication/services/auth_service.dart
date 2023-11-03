@@ -3,7 +3,7 @@ import 'package:agenda_nail_app/src/modules/core/authentication/exceptions/auth_
 import 'package:agenda_nail_app/src/modules/core/authentication/models/token_entity.dart';
 import 'package:result_dart/result_dart.dart';
 
-abstract interface class AuthService {
+abstract class AuthService {
   AsyncResult<TokenEntity, AuthException> loginWithEmailAndPassword(
       UserCredentialDTO user);
 
